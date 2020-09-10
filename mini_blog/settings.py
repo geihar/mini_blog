@@ -119,3 +119,9 @@ LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = "log"
 
 AUTH_USER_MODEL = 'users.User'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'test@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_password'
