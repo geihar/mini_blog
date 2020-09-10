@@ -8,6 +8,60 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
+<style>
+    .alert-light{
+    border-color: #bfbfbf;
+}
+body{
+    background: #ffffff;
+}
+.form-section{
+    background: #fff;
+    padding: 20px;
+    border: 1px solid silver;
+    box-sizing: border-box;
+    width: 100%;
+    -webkit-box-shadow: 0 2px 3px 0 rgba(74,74,74,21);
+    -moz-box-shadow: 0 2px 3px 0 rgba(74,74,74,21);
+    box-shadow: 0 2px 3px 0 rgba(74,74,74,21);
+
+}
+.form-section>h2{
+    color: #b38a22;
+    margin-bottom: 10px;
+}
+.user_img{
+    height: 64px;
+    width: 64px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+.bio_img{
+    height: 150px;
+    width: 248px;
+
+}
+.bg{
+    max-height: 60%;
+}
+footer{
+    padding: 30px;
+    background: #333a41;
+    color: #f1efef;
+    float: left;
+    width: 100%;
+    margin-top: 50px;
+}
+footer a{color: #788c9e}
+footer a:hover{color: #79b0e2}
+
+img{
+    max-width: 100%;
+}
+</style>
 {% include 'include/nav.html' %}
 <main class="container">
     <div class="row">
@@ -34,5 +88,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
+<footer>
+    {% include 'include/footer.html' %}
+</footer>
 </html>

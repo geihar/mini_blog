@@ -14,13 +14,13 @@ class PostListView(ListView):
         context = super(PostListView, self).get_context_data(**kwards)
         context['title'] = 'Главная страница блога'
         return context
-# #
 #
-# class PostDetailView(DetailView):
-#     model = Post
-#     template_name = 'mini_blog/post_detail.html'
-#
-#     def get_context_data(self, **kwards):
-#         context = super(PostDetailView, self).get_context_data(**kwards)
-#         context['title'] = Post.objects.filter(pk=self.kwargs['pk']).first()
-#         return context
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'
+
+    def get_context_data(self, **kwards):
+        context = super(PostDetailView, self).get_context_data(**kwards)
+        context['title'] = Post.objects.filter(pk=self.kwargs['pk']).first()
+        return context

@@ -1,44 +1,37 @@
 {% extends 'base.html' %}
 {% block main_section %}
-    {% for post in posts %}
-        <div class="alert alert-light">
-            <h1>{{ post.title }}</h1>
-            <p>{{ post.text| striptags|truncatechars:200 }}</p>
-            <div class="row">
-                <div>
-                    {% if post.autor.profile.img %}
-                        <img src="{{ post.autor.profile.img.url }}" alt="post.author"
-                             class="user_img">
-                    {% else %}
-                        <img src="/imagines/1.jpg" alt="post.author" class="user_img">
-                    {% endif %}
-                </div>
-                <div class="mt-2">
-                    <span class="text-muted">Публикация: {{ post.date| date:"d E Y  в H:i:s" }}</span>
-                    <p><b>Автор:
-                        <a href="{% url 'user_all_news' post.author %}"> {{ post.autor }} </a>
-                    </b></p>
-                </div>
+    <div class="alert alert-light">
+        {% if object.img %}
+            <img height="500px" src="{{ object.img|safe }}">
+        {% endif %}
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.text|safe }}</p>
+        <div class="row">
+            <div>
+                {% if object.autor.profile.img %}
+                    <img src="{{ object.autor.profile.img.url }}" alt="object.autor"
+                         class="user_img">
+                {% else %}
+                    <img src="/imagines/1.jpg" alt="object.autor" class="user_img">
+                {% endif %}
             </div>
-            <a href="{% url 'full_news' post.id %}" class="btn btn-outline-secondary">Читать
-                далее</a>
+            <div class="mt-2">
+                <span class="text-muted">Публикация: {{ object.date| date:"d E Y  в H:i:s" }}</span>
+                <p><b>Автор:
+{#                    <a href="{% url 'user_all_news' object.autor %}"> {{ object.autor }} </a>#}
+                </b></p>
+            </div>
+
         </div>
-    {% endfor %}
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a href="/" class="btn btn-outline-secondary">Начало</a>
-            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary">Предыдущая</a>
+        {% if object.autor == user %}
+            <hr>
+            <a class="btn btn-outline-warning" href="{% url 'update_news' object.id %}">Обновить
+                новость</a>
+            <a class="btn btn-outline-warning" href="{% url 'delete_news' object.id %}">Удалить
+                новость</a>
         {% endif %}
-        {% for i in page_obj.paginator.page_range %}
-            {% if i == page_obj.number %}
-                <button class="btn btn-secondary">{{ i }}</button>
-            {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
-                <a href="?page={{ i }}" class="btn btn-outline-secondary">{{ i }}</a>
-            {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary">Следующая</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-secondary">Последняя</a>
-        {% endif %}
-    {% endif %}
+
+    </div>
 {% endblock main_section %}
+
+
