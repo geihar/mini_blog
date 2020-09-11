@@ -1,10 +1,8 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import CreateView, View
+from django.views.generic import CreateView
 
-from .forms import UserRegForm, UserUpdate
-
+from .forms import UserRegForm
 
 
 class Registration(CreateView):

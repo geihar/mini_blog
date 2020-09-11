@@ -6,11 +6,13 @@
             <p>{{ post.text| striptags|truncatechars:200 }}</p>
             <div class="row">
                 <div class="mt-2">
-                    <span class="text-muted">Публикация: {{ post.date| date:"d E Y  в H:i:s" }}</span>
+                    <span class="text-muted">Публикация: {{ post.creation_date| date:"d E Y  в H:i:s" }}</span>
                     <p><b>Автор: {{ post.author }}</b></p>
                 </div>
             </div>
-
+            {% for tags in post.tags.all %}
+            <a href="{{ tags.get_absolute_url }}">#{{ tags.name }}</a>
+            {% endfor %}
         </div>
     {% endfor %}
     {% if is_paginated  and user.is_authenticated %}

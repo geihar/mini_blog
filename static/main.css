@@ -50,3 +50,11 @@ footer a:hover{color: #79b0e2}
 img{
     max-width: 100%;
 }
+a{
+   color: #bfbfbf;
+
+}
+a:hover{
+   color: #5c6064;
+   text-decoration: none;
+}

@@ -2,36 +2,27 @@
 {% block main_section %}
     <div class="alert alert-light">
         {% if object.img %}
-            <img height="500px" src="{{ object.img|safe }}">
+            <img height="500px"  src="{{ object.img.url }}" alt="">
         {% endif %}
-        <h1>{{ object.title }}</h1>
+        <h1 class="mt-2 ">{{ object.title }}</h1>
         <p>{{ object.text|safe }}</p>
+        {% for tags in post.tags.all %}
+        <a href="{{ tags.get_absolute_url }}">#{{ tags.name }}</a>
+        {% endfor %}
+                    <hr>
         <div class="row">
-            <div>
-                {% if object.autor.profile.img %}
-                    <img src="{{ object.autor.profile.img.url }}" alt="object.autor"
-                         class="user_img">
-                {% else %}
-                    <img src="/imagines/1.jpg" alt="object.autor" class="user_img">
-                {% endif %}
-            </div>
-            <div class="mt-2">
-                <span class="text-muted">Публикация: {{ object.date| date:"d E Y  в H:i:s" }}</span>
-                <p><b>Автор:
-{#                    <a href="{% url 'user_all_news' object.autor %}"> {{ object.autor }} </a>#}
-                </b></p>
+
+            <div class="mt-2 ">
+                <p><b>Автор: {{ object.author }}</b></p>
+                <span class="text-muted">Создан: {{ object.creation_date| date:"d E Y  в H:i:s" }}</span>
+                <br>
+                <span class="text-muted">Опубликован: {{ object.pub_date| date:"d E Y  в H:i:s" }}</span>
+                <br>
+                <span class="text-muted">Обновлен: {{ object.upd_date| date:"d E Y  в H:i:s" }}</span>
             </div>
 
         </div>
-        {% if object.autor == user %}
-            <hr>
-            <a class="btn btn-outline-warning" href="{% url 'update_news' object.id %}">Обновить
-                новость</a>
-            <a class="btn btn-outline-warning" href="{% url 'delete_news' object.id %}">Удалить
-                новость</a>
-        {% endif %}
-
-    </div>
+           </div>
 {% endblock main_section %}
 
 
