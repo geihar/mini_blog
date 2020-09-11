@@ -4,7 +4,7 @@
         <div class="alert alert-light">
                         <a href="{% url 'post_detail' post.id %}" class="alert-l" ><h1>{{ post.title }}</h1></a>
             <p>{{ post.text| striptags|truncatechars:200 }}</p>
-            <div class="row">
+            <div>
                 <div class="mt-2">
                     <span class="text-muted">Публикация: {{ post.creation_date| date:"d E Y  в H:i:s" }}</span>
                     <p><b>Автор: {{ post.author }}</b></p>

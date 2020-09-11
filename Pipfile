@@ -10,6 +10,7 @@ coverage = "*"
 django = "*"
 django-crispy-forms = "*"
 pillow = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
