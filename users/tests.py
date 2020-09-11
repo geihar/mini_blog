@@ -1,10 +1,7 @@
-import json
-
 from django.test import TestCase
 from django.urls import reverse
 
-
-from blog.models import User
+from users.models import User
 from users.forms import UserRegForm
 
 
@@ -22,16 +19,16 @@ class UserTest(TestCase):
 
 
 class RegistrationViewTests(TestCase):
+    """Tests for Registration view."""
+
     def setUp(self):
         User.objects.create(username='TomAd',
                             first_name='Tom',
                             last_name='Adams', )
 
     def test_get_reg_form(self):
-
-        response = self.client.get(
-            '/user/register/'
-        )
+        self.url = reverse('reg')
+        response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, 200)
 
@@ -62,9 +59,9 @@ class RegistrationViewTests(TestCase):
         self.assertTrue(form.is_valid())
 
     def test__not_valid_forms(self):
-        valid_data = {
+        not_valid_data = {
             'username': 'Alex',
             'email': 'email@gmail.com',
         }
-        form = UserRegForm(data=valid_data)
+        form = UserRegForm(data=not_valid_data)
         self.assertFalse(form.is_valid())
