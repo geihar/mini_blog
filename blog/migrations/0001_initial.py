@@ -7,38 +7,47 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('text', models.TextField()),
-                ('published', models.BooleanField(default=False)),
-                ('img', models.ImageField(blank=True, upload_to='post_images')),
-                ('creation_date', models.DateTimeField(auto_now_add=True)),
-                ('pub_date', models.DateTimeField(auto_now_add=True)),
-                ('upd_date', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("text", models.TextField()),
+                ("published", models.BooleanField(default=False)),
+                ("img", models.ImageField(blank=True, upload_to="post_images")),
+                ("creation_date", models.DateTimeField(auto_now_add=True)),
+                ("pub_date", models.DateTimeField(auto_now_add=True)),
+                ("upd_date", models.DateTimeField(auto_now=True)),
             ],
-            options={
-                'verbose_name': 'Пост',
-                'verbose_name_plural': 'Посты',
-            },
+            options={"verbose_name": "Пост", "verbose_name_plural": "Посты",},
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(db_index=True, max_length=50, unique=True)),
-                ('created_date', models.DateTimeField(auto_now_add=True)),
-                ('edited_date', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(db_index=True, max_length=50, unique=True)),
+                ("created_date", models.DateTimeField(auto_now_add=True)),
+                ("edited_date", models.DateTimeField(auto_now=True)),
             ],
-            options={
-                'verbose_name': 'Тег',
-                'verbose_name_plural': 'Теги',
-            },
+            options={"verbose_name": "Тег", "verbose_name_plural": "Теги",},
         ),
     ]

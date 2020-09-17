@@ -2,7 +2,6 @@ from datetime import datetime
 
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import Group
 
 from users.models import User
 
@@ -20,19 +19,19 @@ class Tag(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('post_tag', args=[self.name])
+        return reverse("post_tag", args=[self.name])
 
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     text = models.TextField()
     published = models.BooleanField(default=False)
-    img = models.ImageField(blank=True, upload_to='post_images')
+    img = models.ImageField(blank=True, upload_to="post_images")
     creation_date = models.DateTimeField(auto_now_add=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     upd_date = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tag, related_name='post_tag')
+    tags = models.ManyToManyField(Tag, related_name="post_tag")
 
     class Meta:
         verbose_name = "Пост"
@@ -51,6 +50,4 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
-
-
+        return reverse("post_detail", kwargs={"pk": self.pk})
